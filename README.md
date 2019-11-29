@@ -6,21 +6,30 @@ Run
 su pi
 git clone https://github.com/friendlyarm/rk3399-opencv-ucvcamera-python-demo
 cd rk3399-opencv-ucvcamera-python-demo
-./run_camera_py.sh
+./run_one_camera_py.sh
 ```
 
 Reading mjpeg stream
 ------------
 open the camera using the following code:
 ```
-cap = cv.VideoCapture(get_camerasrc_mjpeg(), cv.CAP_GSTREAMER)
+cap = cv.VideoCapture(get_camerasrc_mjpeg(10), cv.CAP_GSTREAMER)
 ```
 
 Reading NV12 stream
 ------------
 open the camera using the following code:
 ```
-cap = cv.VideoCapture(get_camerasrc_nv12(), cv.CAP_GSTREAMER)
+cap = cv.VideoCapture(get_camerasrc_nv12(10), cv.CAP_GSTREAMER)
+```
+
+Preview 3 cameras at the same time
+------------
+```
+su pi
+git clone https://github.com/friendlyarm/rk3399-opencv-ucvcamera-python-demo
+cd rk3399-opencv-ucvcamera-python-demo
+./run_three_camera_py.sh
 ```
 
 Supported camera
