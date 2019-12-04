@@ -6,8 +6,8 @@ Run
 ------------
 ```
 su pi
-git clone https://github.com/friendlyarm/rk3399-opencv-ucvcamera-python-demo
-cd rk3399-opencv-ucvcamera-python-demo
+git clone https://github.com/friendlyarm/rk3399-opencv-uvccamera-python-demo
+cd rk3399-opencv-uvccamera-python-demo
 ./run_one_camera_py.sh
 ```
 
@@ -29,7 +29,7 @@ Preview 3 cameras at the same time
 ------------
 ```
 su pi
-git clone https://github.com/friendlyarm/rk3399-opencv-ucvcamera-python-demo
+git clone https://github.com/friendlyarm/rk3399-opencv-uvccamera-python-demo
 cd rk3399-opencv-ucvcamera-python-demo
 ./run_three_camera_py.sh
 ```
@@ -49,6 +49,6 @@ v4l2-ctl --list-formats-ext -d /dev/video10
 
 More examples
 ------------
-https://github.com/friendlyarm/opencv-uvccamera-cpp-demo  
+https://github.com/friendlyarm/rk3399-opencv-uvccamera-cpp-demo  
 https://github.com/friendlyarm/install-opencv-on-friendlycore  
 
