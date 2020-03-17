@@ -5,19 +5,17 @@ import os
 
 # MJPEG
 def get_camerasrc_mjpeg():
-    # cam_width=1920
-    # cam_height=1080
-    cam_width=800
-    cam_height=600
-    cam_frames=30
-    return 'v4l2src device=/dev/video10 io-mode=4 ! image/jpeg,width='+str(cam_width)+',height='+str(cam_height)+',framerate='+str(cam_frames)+'/1 ! jpegdec ! videoconvert ! video/x-raw,format=BGR ! appsink'
+    cam_width=1920
+    cam_height=1080
+    cam_frames=15
+    return 'v4l2src device=/dev/video10 io-mode=4 ! image/jpeg,width='+str(cam_width)+',height='+str(cam_height)+',framerate='+str(cam_frames)+'/1 ! jpegdec ! videoconvert ! video/x-raw,format=BGR ! appsink drop=true'
 
 # NV12
 def get_camerasrc_nv12():
     cam_width=640
     cam_height=480
     cam_frames=30
-    return 'v4l2src device=/dev/video10 io-mode=4 ! videoconvert ! video/x-raw,format=NV12,width='+str(cam_width)+',height='+str(cam_height)+',framerate='+str(cam_frames)+'/1 ! videoconvert ! video/x-raw,format=BGR ! appsink'
+    return 'v4l2src device=/dev/video10 io-mode=4 ! videoconvert ! video/x-raw,format=NV12,width='+str(cam_width)+',height='+str(cam_height)+',framerate='+str(cam_frames)+'/1 ! videoconvert ! video/x-raw,format=BGR ! appsink drop=true'
 
 cap = cv.VideoCapture(get_camerasrc_mjpeg(), cv.CAP_GSTREAMER)
 
@@ -30,9 +28,14 @@ if not cap.isOpened():
 last_time = time.time()
 
 while(True):
-
     ret, frame = cap.read()
-    cv.imshow('left', frame)
+    if ret:
+        cv.imshow('left', frame)
+    else:
+        print("empty frame")
+
+    del frame
+    del ret
 
     if cv.waitKey(1) & 0xFF == ord('q'):
         break

@@ -7,5 +7,5 @@ export WORKON_HOME=~/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 workon cv
 . setqt5env
-DISPLAY=:0.0 python3 one_camera.py
+OPENCV_VIDEOCAPTURE_DEBUG=1 DISPLAY=:0.0 python3 one_camera.py
 deactivate
