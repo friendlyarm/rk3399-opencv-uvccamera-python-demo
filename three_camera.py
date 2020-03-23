@@ -5,19 +5,19 @@ import os
 
 # MJPEG
 def get_camerasrc_mjpeg(n):
-    # cam_width=1920
-    # cam_height=1080
-    cam_width=432
-    cam_height=240
-    cam_frames=15
-    return 'v4l2src device=/dev/video'+str(n)+' io-mode=4 ! image/jpeg,width='+str(cam_width)+',height='+str(cam_height)+',framerate='+str(cam_frames)+'/1 ! jpegdec ! videoconvert ! video/x-raw,format=BGR ! appsink drop=true'
+    cam_width=1920
+    cam_height=1080
+    # cam_width=432
+    # cam_height=240
+    cam_frames=10
+    return 'v4l2src device=/dev/video'+str(n)+' io-mode=4 ! image/jpeg,width='+str(cam_width)+',height='+str(cam_height)+',framerate='+str(cam_frames)+'/1 ! jpegdec ! videoconvert ! video/x-raw,format=BGR ! appsink drop=true sync=false max-buffers=1'
 
 # NV12
 def get_camerasrc_nv12(n):
     cam_width=640
     cam_height=480
     cam_frames=30
-    return 'v4l2src device=/dev/video'+str(n)+' io-mode=4 ! videoconvert ! video/x-raw,format=NV12,width='+str(cam_width)+',height='+str(cam_height)+',framerate='+str(cam_frames)+'/1 ! videoconvert ! video/x-raw,format=BGR ! appsink drop=true'
+    return 'v4l2src device=/dev/video'+str(n)+' io-mode=4 ! videoconvert ! video/x-raw,format=NV12,width='+str(cam_width)+',height='+str(cam_height)+',framerate='+str(cam_frames)+'/1 ! videoconvert ! video/x-raw,format=BGR ! appsink drop=true sync=false max-buffers=1'
 
 cap1 = cv.VideoCapture(get_camerasrc_mjpeg(10), cv.CAP_GSTREAMER)
 cap2 = cv.VideoCapture(get_camerasrc_mjpeg(12), cv.CAP_GSTREAMER)
